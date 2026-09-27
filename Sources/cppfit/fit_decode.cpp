@@ -811,11 +811,11 @@ Decode::RETURN Decode::ReadByte(FIT_UINT8 data)
                 MesgDefinition defn = localMesgDefs[localMesgIndex];
                 FieldDefinition* fldDefn = defn.GetFieldByIndex(fieldIndex);
                 FIT_UINT8 baseType = fldDefn->GetType() & FIT_BASE_TYPE_NUM_MASK;
-                FIT_UINT8 typeSize = baseTypeSizes[baseType];
                 FIT_BOOL read = FIT_TRUE;
 
                 if (baseType < FIT_BASE_TYPES) // Ignore field if base type not supported.
                 {
+                    FIT_UINT8 typeSize = baseTypeSizes[baseType];
                     UpdateEndianness(fldDefn->GetType(), fldDefn->GetSize());
 
                     Field field(mesg.GetNum(), fldDefn->GetNum());
